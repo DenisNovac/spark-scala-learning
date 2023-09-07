@@ -1,5 +1,7 @@
 # Apache Spark with Scala - Hands On with Big Data course
 
+https://www.udemy.com/course/apache-spark-with-scala-hands-on-with-big-data/
+
 Versions:
 
 - OpenJDK 11.0.15 (17 doesn't work because of some log4j error);

@@ -4,6 +4,14 @@ import org.apache.spark.*
 import org.apache.log4j.*
 import org.apache.spark.rdd.RDD
 
+/*
+0,Will,33,385
+1,Jean-Luc,26,2
+2,Hugh,55,221
+3,Deanna,40,465
+4,Quark,68,21
+ */
+
 object FriendsByAge:
 
   // line format is ID, Name, Age, Friends
