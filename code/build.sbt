@@ -15,3 +15,15 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-mllib" % sparkVersion,
   "org.apache.spark" %% "spark-streaming" % sparkVersion
 ).map(_.cross(CrossVersion.for3Use2_13))
+
+lazy val sparkHelpers = "0.2.2"
+
+/* There is no TypeTag in Scala 3
+ *
+ * > No implicit values were found that match type reflect.runtime.universe.TypeTag[Persom].
+ * https://xebia.com/blog/using-scala-3-with-spark/
+ */
+libraryDependencies ++= Seq(
+  "io.github.vincenzobaz" %% "spark-scala3-encoders",
+  "io.github.vincenzobaz" %% "spark-scala3-udf"
+).map(_ % sparkHelpers)
