@@ -1,7 +1,7 @@
-package com.github.denisnovac.spark
+package com.github.denisnovac.spark.rdd
 
-import org.apache.spark._
-import org.apache.log4j._
+import org.apache.log4j.*
+import org.apache.spark.*
 
 /*
 id item amount_spent

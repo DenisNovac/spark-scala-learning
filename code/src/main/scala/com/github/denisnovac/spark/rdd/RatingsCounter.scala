@@ -1,7 +1,7 @@
-package com.github.denisnovac.spark
+package com.github.denisnovac.spark.rdd
 
-import org.apache.spark.*
 import org.apache.log4j.*
+import org.apache.spark.*
 import org.apache.spark.rdd.RDD
 
 // Number of a given rating within movie set (100.000 movie ratings).

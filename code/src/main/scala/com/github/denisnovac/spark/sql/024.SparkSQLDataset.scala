@@ -1,7 +1,7 @@
-package com.github.denisnovac.spark
+package com.github.denisnovac.spark.sql
 
-import org.apache.spark.sql._
-import org.apache.log4j._
+import org.apache.log4j.*
+import org.apache.spark.sql.*
 
 /*
 id,name,age,friends
@@ -26,7 +26,7 @@ object SparkSQLDataset:
     // import session.implicits._
     import scala3encoders.given
 
-    val schemaPeople: Dataset[Person] =
+    val peopleDs: Dataset[Person] =
       session.read
         .options {
           Map(
@@ -38,7 +38,7 @@ object SparkSQLDataset:
         .csv("data/fakefriends.csv")
         .as[Person] // Dataset[Person]
 
-    schemaPeople.printSchema()
+    peopleDs.printSchema()
     /*
      root
      |-- id: integer (nullable = true)
@@ -48,12 +48,21 @@ object SparkSQLDataset:
      */
 
     // basically the same as creating database table "people"
-    schemaPeople.createOrReplaceTempView("people")
+    // creates sql-accessible table "people" in session used to create this dataset
+    peopleDs.createOrReplaceTempView("people")
+    val teenagers: Dataset[Person] =
+      session
+        .sql("SELECT * FROM people WHERE age >= 13 AND age <= 19")
+        .as[Person]
 
-    val teenagers =
-      session.sql("SELECT * FROM people WHERE age >= 13 AND age <= 19")
+    // scala ddl with same result
+    val teenagers2 =
+      peopleDs
+        .filter(p => p.age >= 13 && p.age <= 19)
 
     val results = teenagers.collect()
+
+    val results2 = teenagers2.collect()
 
     results.foreach(println)
     /*
@@ -61,6 +70,13 @@ object SparkSQLDataset:
       [52,Beverly,19,269]
       [54,Brunt,19,5]
      */
+
+    println("================")
+
+    results2.foreach(println)
+
+    println()
+    println(results.sameElements(results2)) // true
 
     // session should be closed at the end
     session.stop()

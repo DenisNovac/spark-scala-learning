@@ -1,11 +1,10 @@
-package com.github.denisnovac.spark
+package com.github.denisnovac.spark.rdd
 
-import org.apache.spark.*
 import org.apache.log4j.*
+import org.apache.spark.*
 import org.apache.spark.rdd.RDD
 
-import scala.math.min
-import scala.math.max
+import scala.math.{max, min}
 
 // temp is C multipled by 10
 /*
