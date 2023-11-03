@@ -7,7 +7,7 @@ lazy val root = (project in file("."))
     name := "scala-spark-course"
   )
 
-lazy val sparkVersion = "3.2.4"
+lazy val sparkVersion = "3.5.0"
 
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % sparkVersion,
@@ -16,7 +16,7 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-streaming" % sparkVersion
 ).map(_.cross(CrossVersion.for3Use2_13))
 
-lazy val sparkHelpers = "0.2.2"
+lazy val sparkHelpers = "0.2.4"
 
 /* There is no TypeTag in Scala 3
  *
